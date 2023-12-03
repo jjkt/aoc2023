@@ -7,6 +7,7 @@
 #include <cassert>
 #include <cstddef>
 #include <utility>
+#include <ranges>
 
 struct span_t
 {
@@ -69,15 +70,11 @@ struct number
 
 [[nodiscard]] auto get_numbers_touching_range(const std::vector<number> &numbers, size_t start, size_t end) -> std::vector<number>
 {
-    std::vector<number> result;
-    for (auto number : numbers)
-    {
-        if (two_ranges_overlap(number.span.pos, number.span.pos + number.span.len - 1, start, end))
-        {
-            result.push_back(number);
-        }
-    }
-    return result;
+    // C++20 ranges version:
+    auto result = numbers | std::ranges::views::filter([start, end](const number &number)
+                                                       { return two_ranges_overlap(number.span.pos, number.span.pos + number.span.len - 1, start, end); });
+
+    return std::vector<number>{result.begin(), result.end()};
 }
 
 [[nodiscard]] auto process(const std::string &previous_line, std::string middle_line, const std::string &next_line, unsigned *gear_ratio_sum) -> unsigned
