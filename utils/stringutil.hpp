@@ -38,3 +38,38 @@ auto split(std::string line, std::string delimiter) -> std::vector<std::string>
 
     return parts;
 }
+
+bool safe_isdigit(char ch)
+{
+    return std::isdigit(static_cast<unsigned char>(ch));
+}
+
+auto find_next_number(std::string line, size_t pos, size_t *len) -> size_t
+{
+    if (pos >= line.size())
+    {
+        return std::string::npos;
+    }
+
+    // find the first digit:
+    while (pos < line.size() && !safe_isdigit(line[pos]))
+    {
+        ++pos;
+    }
+
+    if (pos == line.size())
+    {
+        return std::string::npos;
+    }
+
+    // find the last digit:
+    size_t end = pos;
+    while (end < line.size() && safe_isdigit(line[end]))
+    {
+        ++end;
+    }
+
+    *len = end - pos;
+
+    return pos;
+}

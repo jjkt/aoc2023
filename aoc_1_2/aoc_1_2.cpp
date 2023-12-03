@@ -1,12 +1,11 @@
 #include <iostream>
-#include <fstream>
 #include <string>
 #include <vector>
 #include "file.hpp"
 
 const std::vector<std::string> numbers = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
-auto find_leftmost_number_in_line(std::string line) -> int
+auto find_leftmost_number_in_line(const std::string &line) -> int
 {
     auto leftmost_position = std::string::npos;
     auto leftmost_number = -1;
@@ -32,7 +31,7 @@ auto find_leftmost_number_in_line(std::string line) -> int
     return leftmost_number;
 }
 
-auto find_rightmost_number_in_line(std::string line) -> int
+auto find_rightmost_number_in_line(const std::string &line) -> int
 {
     auto rightmost_position = std::string::npos;
     auto rightmost_number = -1;
@@ -66,10 +65,10 @@ auto find_rightmost_number_in_line(std::string line) -> int
 
 auto main() -> int
 {
-    std::cout << "Advent of Code 2020 - Day 1 - part 2" << std::endl;
+    std::cout << "Advent of Code 2020 - Day 1 - part 2" << '\n';
     auto input = load_file("input.txt");
 
-    std::cout << "Input size: " << input.size() << std::endl;
+    std::cout << "Input size: " << input.size() << '\n';
 
     auto sum = 0;
     // iterate input lines:
@@ -81,13 +80,13 @@ auto main() -> int
 
         if (leftmost == -1 || rightmost == -1)
         {
-            std::cout << "No integers found in line: " << *i << std::endl;
+            std::cout << "No integers found in line: " << *i << '\n';
             continue;
         }
 
         // take the leftmost and rightmost and combine to two digit number:
-        auto number = leftmost * 10 + rightmost;
+        auto number = leftmost * 10 + rightmost; // NOLINT
         sum += number;
     }
-    std::cout << "Sum: " << sum << std::endl;
+    std::cout << "Sum: " << sum << '\n';
 }
