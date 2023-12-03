@@ -6,7 +6,7 @@
 
 auto main() -> int
 {
-    std::cout << "Advent of Code 2020 - Day 1" << std::endl;
+    std::cout << "Advent of Code 2020 - Day 1 - part 1" << std::endl;
     auto input = load_file("input.txt");
 
     std::cout << "Input size: " << input.size() << std::endl;

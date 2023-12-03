@@ -66,7 +66,7 @@ auto find_rightmost_number_in_line(std::string line) -> int
 
 auto main() -> int
 {
-    std::cout << "Advent of Code 2020 - Day 2" << std::endl;
+    std::cout << "Advent of Code 2020 - Day 1 - part 2" << std::endl;
     auto input = load_file("input.txt");
 
     std::cout << "Input size: " << input.size() << std::endl;

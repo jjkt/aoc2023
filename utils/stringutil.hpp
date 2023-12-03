@@ -1,0 +1,40 @@
+#pragma once
+
+#include <string>
+#include <vector>
+
+auto trim(std::string line) -> std::string
+{
+    auto pos = line.find_first_not_of(" ");
+    if (pos == std::string::npos)
+    {
+        return "";
+    }
+    line = line.substr(pos);
+
+    pos = line.find_last_not_of(" ");
+    if (pos == std::string::npos)
+    {
+        return "";
+    }
+    line = line.substr(0, pos + 1);
+
+    return line;
+}
+
+auto split(std::string line, std::string delimiter) -> std::vector<std::string>
+{
+    std::vector<std::string> parts;
+
+    auto pos = line.find(delimiter);
+    while (pos != std::string::npos)
+    {
+        auto part = line.substr(0, pos);
+        parts.push_back(part);
+        line = line.substr(pos + 1);
+        pos = line.find(delimiter);
+    }
+    parts.push_back(line);
+
+    return parts;
+}
