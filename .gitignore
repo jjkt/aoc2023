@@ -15,3 +15,5 @@ _deps
 *.obj
 *.pdb
 build
+aoc4/bin
+aoc4/obj
