@@ -17,3 +17,4 @@ _deps
 build
 aoc4/bin
 aoc4/obj
+*/target
